@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Build Maven') {
             steps {
-                checkout([$class: 'GitSCM', credentialsId: 'githubpwd', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/maxca/spring-java-jenkins.git']]])
+                checkout([$class: 'GitSCM', credentialsId: 'githubpwd', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/TinhhCH/order-string.git']]])
                 sh 'mvn clean install'
             }
         }
@@ -77,7 +77,7 @@ pipeline {
         }
         stage('Deploy to k8s') {
             steps {
-                withKubeConfig([credentialsId: 'kubectlpwd', serverUrl: 'https://127.0.0.1:51092']) {
+                withKubeConfig([credentialsId: 'kubectlpwd', serverUrl: 'https://127.0.0.1:62281']) {
                     script {
                         // Replace the image tag in the deployment YAML file
                         sh "sed -i '' 's/\$IMAGE_TAG/$IMAGE_TAG/g' k8s/deployment.yaml"
