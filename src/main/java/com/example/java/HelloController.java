@@ -1,17 +1,19 @@
-package com.example.demo;
+package com.example.java;
 
+import com.example.java.model.Order;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.demo.Order;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @Slf4j
-public class DemoController {
+public class HelloController {
+
     @GetMapping("/orders")
     public List<Order> getOrders(@RequestHeader Map<String, String> RequestHeader) {
         log.info("request {}", RequestHeader);
@@ -21,3 +23,4 @@ public class DemoController {
                 new Order(3L, "disk", 1244.00));
     }
 }
+ 
